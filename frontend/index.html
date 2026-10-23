@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Eco Sertão — Monitoramento de Queimadas</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Work+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="vendor/leaflet/leaflet.css" />
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <header class="topo">
+    <div class="topo__marca">
+      <span class="topo__titulo">Eco Sertão</span>
+      <span class="topo__subtitulo">Monitoramento de focos de queimada com dados do INPE</span>
+    </div>
+    <div class="topo__status" id="status-atualizacao">
+      <span class="ponto ponto--carregando"></span>
+      <span id="status-texto">Carregando dados...</span>
+    </div>
+  </header>
+
+  <main class="painel">
+
+    <section class="painel__mapa">
+      <div id="mapa"></div>
+    </section>
+
+    <aside class="painel__lateral">
+
+      <div class="cartoes">
+        <div class="cartao">
+          <span class="cartao__numero" id="numero-total">—</span>
+          <span class="cartao__legenda">focos (48h)</span>
+        </div>
+        <div class="cartao">
+          <span class="cartao__numero" id="numero-hoje">—</span>
+          <span class="cartao__legenda">focos hoje</span>
+        </div>
+        <div class="cartao">
+          <span class="cartao__numero" id="numero-municipios">—</span>
+          <span class="cartao__legenda">municípios afetados</span>
+        </div>
+      </div>
+
+      <section class="bloco">
+        <h2>Sobre os pontos no mapa</h2>
+        <p class="texto-auxiliar">
+          Cada ponto é um foco de calor confirmado por satélite — um fato,
+          não uma opinião. A cor é sempre a mesma, porque o INPE não
+          classifica a gravidade de um foco específico.
+        </p>
+        <p class="texto-auxiliar">
+          Clicando num ponto, você também vê o <strong>Risco de Fogo</strong>
+          da região naquele dia — um índice meteorológico (baseado em dias
+          seguidos sem chuva) que mostra o quanto a vegetação ali está seca
+          e propensa a pegar fogo, de Mínimo a Crítico. Ele descreve a
+          condição ambiental da região, não o tamanho ou a gravidade
+          daquele foco específico.
+        </p>
+      </section>
+
+      <section class="bloco">
+        <h2>Tendência (últimos 30 dias)</h2>
+        <canvas id="grafico-historico" height="160"></canvas>
+      </section>
+
+      <section class="bloco">
+        <h2>Municípios com mais focos</h2>
+        <ol class="ranking" id="lista-ranking">
+          <li class="ranking__vazio">Carregando…</li>
+        </ol>
+      </section>
+
+      <section class="bloco bloco--notificacoes">
+        <h2>Alertas no dispositivo</h2>
+        <p class="texto-auxiliar">
+          Ative para ser avisado no navegador quando surgirem novos focos
+          na região monitorada.
+        </p>
+        <button id="botao-notificacoes" class="botao">Ativar alertas</button>
+        <p class="texto-auxiliar" id="notificacoes-status"></p>
+      </section>
+
+    </aside>
+  </main>
+
+  <footer class="rodape">
+    Dados: Programa Queimadas / INPE (BDQueimadas) — atualizado automaticamente a cada poucas horas.
+  </footer>
+
+  <script src="vendor/leaflet/leaflet.js"></script>
+  <script src="vendor/chartjs/chart.umd.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
